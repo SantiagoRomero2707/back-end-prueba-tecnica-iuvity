@@ -1,4 +1,4 @@
-package com.iuvity.kardexlastversion.security;
+package com.alibou.security.security;
 
 import com.alibou.security.security.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;

@@ -1,15 +1,19 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/jwt_security
-    username: alibou
-    password: alibou
-    driver-class-name: org.postgresql.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/prueba_tecnica_iuvity
+    username: root
+    password: 12345
   jpa:
-    hibernate:
-      ddl-auto: create-drop
     show-sql: true
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+jwt:
+  secret: "secret"
+  expiration: 36000

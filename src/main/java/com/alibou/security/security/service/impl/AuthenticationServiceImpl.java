@@ -1,9 +1,13 @@
-package com.alibou.security.auth;
+package com.alibou.security.security.service.impl;
 
-import com.alibou.security.config.JwtService;
-import com.alibou.security.user.Role;
-import com.alibou.security.user.User;
-import com.alibou.security.user.UserRepository;
+
+import com.alibou.security.security.dto.request.AuthenticationRequest;
+import com.alibou.security.security.dto.request.RegisterRequest;
+import com.alibou.security.security.dto.response.AuthenticationResponse;
+import com.alibou.security.security.entity.Role;
+import com.alibou.security.security.entity.User;
+import com.alibou.security.security.entity.UserRepository;
+import com.alibou.security.security.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,20 +16,21 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuthenticationService {
+public class AuthenticationServiceImpl {
   private final UserRepository repository;
   private final PasswordEncoder passwordEncoder;
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
 
   public AuthenticationResponse register(RegisterRequest request) {
-    var user = User.builder()
-        .firstname(request.getFirstname())
-        .lastname(request.getLastname())
-        .email(request.getEmail())
-        .password(passwordEncoder.encode(request.getPassword()))
-        .role(Role.USER)
-        .build();
+      var user = User.builder()
+              .firstname(request.getFirstname())
+              .lastname(request.getLastname())
+              .email(request.getEmail())
+              .password(passwordEncoder.encode(request.getPassword()))
+              .role(Role.valueOf(request.getRole()))
+              .build();
+
     repository.save(user);
     var jwtToken = jwtService.generateToken(user);
     return AuthenticationResponse.builder()

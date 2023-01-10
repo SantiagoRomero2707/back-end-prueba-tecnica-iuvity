@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/kardex")
+@RequestMapping("/api/v1/skardex")
 public class KardexController {
 
     private final KardexService kardexService;

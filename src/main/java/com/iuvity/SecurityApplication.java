@@ -15,12 +15,16 @@ public class SecurityApplication {
 
 	@Bean
 	public WebMvcConfigurer corsConfigurer(){
-		return new WebMvcConfigurer() {
+		return new WebMvcConfigurer(){
 			@Override
 			public void addCorsMappings(CorsRegistry registry){
-				registry.addMapping("/**").allowedOrigins("http://localhost:4500").allowedOrigins("*").allowedMethods("*").allowedHeaders("*");
+				registry
+						.addMapping("/**")
+						.allowedOrigins("http://127.0.0.1:4500")
+						.allowedOrigins("*")
+						.allowedMethods("*")
+						.allowedHeaders("*");
 			}
 		};
 	}
-
 }

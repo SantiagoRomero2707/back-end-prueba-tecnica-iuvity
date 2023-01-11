@@ -1,6 +1,7 @@
 package com.iuvity.security.service.impl;
 
 
+import com.iuvity.entity.models.ProductoEntity;
 import com.iuvity.security.dto.request.AuthenticationRequest;
 import com.iuvity.security.dto.request.RegisterRequest;
 import com.iuvity.security.entity.Role;
@@ -13,6 +14,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -69,4 +74,10 @@ public class AuthenticationServiceImpl {
             .authorities(user.getAuthorities())
         .build();
   }
+
+  @Transactional
+  public Optional<User> findByEmail(String email) {
+    return repository.findByEmail(email);
+  }
+
 }

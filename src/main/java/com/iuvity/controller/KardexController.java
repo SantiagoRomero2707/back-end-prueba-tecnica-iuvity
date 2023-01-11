@@ -1,6 +1,5 @@
 package com.iuvity.controller;
 
-
 import com.iuvity.dto.Entity.KardexDTO;
 import com.iuvity.entity.models.KardexEntity;
 import com.iuvity.dto.utils.Mensaje;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/skardex")
+@RequestMapping("/api/v1/kardex")
 public class KardexController {
 
     private final KardexService kardexService;
